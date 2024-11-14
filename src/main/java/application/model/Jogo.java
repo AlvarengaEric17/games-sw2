@@ -13,6 +13,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Set;
+
+import application.record.JogoDTO;
+
 import java.util.HashSet;
 
 @Entity
@@ -29,4 +32,10 @@ public class Jogo {
     @ManyToMany
     @JoinTable(name = "jogos_possuem_plataformas", joinColumns = @JoinColumn(name = "id_jogo"), inverseJoinColumns = @JoinColumn(name = "id_plataforma"))
     private Set<Plataforma> plataformas = new HashSet<Plataforma>();
+
+    public Jogo(JogoDTO jogo){
+        this.id = jogo.id();
+        this.titulo = jogo.titulo();
+        this.plataformas = jogo.plataformas();
+    }
 }
